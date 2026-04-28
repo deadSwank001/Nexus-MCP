@@ -1,0 +1,48 @@
+{
+  "name": "foundry-reverse",
+  "version": "1.0.0",
+  "description": "Foundry MCP Server with Ollama backbone — all-around improved Solidity/EVM development toolkit for local AI agents",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "foundry-mcp": "dist/index.js",
+    "foundry-ollama": "dist/ollama-agent.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "ollama": "node dist/ollama-agent.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "foundry",
+    "ethereum",
+    "evm",
+    "solidity",
+    "mcp",
+    "model-context-protocol",
+    "blockchain",
+    "smart-contracts",
+    "anvil",
+    "cast",
+    "forge",
+    "heimdall",
+    "ollama",
+    "local-ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^16.6.1",
+    "ollama": "^0.5.18",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.39",
+    "typescript": "^5.9.3"
+  }
+}
