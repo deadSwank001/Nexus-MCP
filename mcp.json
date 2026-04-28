@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "foundry-reverse": {
+      "command": "uv",
+      "args": ["run", "foundry-reverse"],
+      "env": {
+        "OLLAMA_BASE_URL": "http://localhost:11434",
+        "EMBED_MODEL": "nomic-embed-text"
+      }
+    }
+  }
+}
