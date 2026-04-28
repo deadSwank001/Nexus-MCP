@@ -10,7 +10,7 @@ import pytest
 from foundry_reverse import evaluation as ev
 
 
-GOOD_EVAL = json.dumps(
+MOCK_EVAL_RESPONSE_JSON = json.dumps(
     {
         "scores": {
             "relevance": 5,
@@ -31,7 +31,7 @@ GOOD_EVAL = json.dumps(
 
 @pytest.mark.asyncio
 async def test_evaluate_response_parses_json():
-    with patch("foundry_reverse.ollama_client.generate", new=AsyncMock(return_value=GOOD_EVAL)):
+    with patch("foundry_reverse.ollama_client.generate", new=AsyncMock(return_value=MOCK_EVAL_RESPONSE_JSON)):
         result = await ev.evaluate_response(
             question="What is Python?",
             response="Python is a high-level programming language.",
@@ -44,7 +44,7 @@ async def test_evaluate_response_parses_json():
 
 @pytest.mark.asyncio
 async def test_evaluate_response_handles_fenced_json():
-    fenced = f"```json\n{GOOD_EVAL}\n```"
+    fenced = f"```json\n{MOCK_EVAL_RESPONSE_JSON}\n```"
     with patch("foundry_reverse.ollama_client.generate", new=AsyncMock(return_value=fenced)):
         result = await ev.evaluate_response(
             question="q",
@@ -65,7 +65,7 @@ async def test_evaluate_response_handles_bad_json():
     assert "error" in result
 
 
-GOOD_AGENT_EVAL = json.dumps(
+MOCK_AGENT_EVAL_RESPONSE_JSON = json.dumps(
     {
         "scores": {
             "task_completion": 5,
@@ -90,6 +90,6 @@ async def test_evaluate_agent():
         {"role": "user", "content": "What is 2+2?"},
         {"role": "assistant", "content": "4"},
     ]
-    with patch("foundry_reverse.ollama_client.generate", new=AsyncMock(return_value=GOOD_AGENT_EVAL)):
+    with patch("foundry_reverse.ollama_client.generate", new=AsyncMock(return_value=MOCK_AGENT_EVAL_RESPONSE_JSON)):
         result = await ev.evaluate_agent(conversation=conv, judge_model="mock-model")
     assert result["scores"]["task_completion"] == 5

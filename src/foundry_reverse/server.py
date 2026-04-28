@@ -77,8 +77,9 @@ async def get_model_info(model_name: str) -> dict[str, Any]:
     """
     info = await oc.get_model_info(model_name)
     # Trim the modelfile to avoid huge outputs
-    if "modelfile" in info:
-        info["modelfile"] = info["modelfile"][:500] + "..." if len(info.get("modelfile", "")) > 500 else info["modelfile"]
+    modelfile = info.get("modelfile", "")
+    if len(modelfile) > 500:
+        info["modelfile"] = modelfile[:500] + "..."
     return info
 
 

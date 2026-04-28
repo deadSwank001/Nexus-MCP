@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import os
 from typing import Any
 
@@ -12,6 +13,8 @@ load_dotenv()
 
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 DEFAULT_TIMEOUT = float(os.getenv("OLLAMA_TIMEOUT", "120"))
+
+_log = logging.getLogger(__name__)
 
 
 def _client(timeout: float = DEFAULT_TIMEOUT) -> httpx.AsyncClient:
@@ -110,4 +113,5 @@ async def health_check() -> bool:
             r = await c.get("/")
             return r.status_code == 200
     except Exception:
+        _log.debug("Ollama health check failed", exc_info=True)
         return False
