@@ -1,4 +1,4 @@
-# Foundry-Reverse
+#Nexus-MCP ( Foundry-Reverse )
 
 Newer Foundry MCP reverse-engineered to work on Ollama
 
