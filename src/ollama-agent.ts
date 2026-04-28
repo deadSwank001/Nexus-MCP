@@ -692,8 +692,8 @@ If Foundry is not installed, tell the user.
 async function runAgent() {
   console.log(`\n╔═══════════════════════════════════════╗`);
   console.log(`║   Foundry-Reverse Ollama Agent        ║`);
-  console.log(`║   Model : ${MODEL.padEnd(28)}║`);
-  console.log(`║   Host  : ${OLLAMA_HOST.padEnd(28)}║`);
+  console.log(`║   Model : ${MODEL.substring(0, 28).padEnd(28)}║`);
+  console.log(`║   Host  : ${OLLAMA_HOST.substring(0, 28).padEnd(28)}║`);
   console.log(`╚═══════════════════════════════════════╝\n`);
 
   const foundryOk = await checkFoundryInstalled();
